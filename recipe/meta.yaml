@@ -43,11 +43,11 @@ outputs:
         - libprotobuf
         - zlib 1.2.11
         # coin or deps
-        - coin-or-utils 2.11.4
-        - coin-or-osi 0.108.6
-        - coin-or-clp 1.17.4
-        - coin-or-cgl 0.60.3
-        - coin-or-cbc 2.10.5
+        - coin-or-utils
+        - coin-or-osi
+        - coin-or-clp
+        - coin-or-cgl
+        - coin-or-cbc
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
       run_constrained:
         - scip =7.0.1
@@ -101,11 +101,11 @@ outputs:
         - wheel
         - zlib 1.2.11
         # coin or deps
-        - coin-or-utils 2.11.4
-        - coin-or-osi 0.108.6
-        - coin-or-clp 1.17.4
-        - coin-or-cgl 0.60.3
-        - coin-or-cbc 2.10.5
+        - coin-or-utils
+        - coin-or-osi
+        - coin-or-clp
+        - coin-or-cgl
+        - coin-or-cbc
       run:
         - absl-py >=0.13
         - mypy-protobuf
