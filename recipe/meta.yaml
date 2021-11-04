@@ -39,7 +39,7 @@ outputs:
         - git
         - pkg-config
       host:
-        - abseil-cpp =20210324.2
+        - abseil-cpp
         - libprotobuf
         - zlib 1.2.11
         # coin or deps
@@ -92,7 +92,7 @@ outputs:
         - setuptools
         - swig >=4.0
       host:
-        - abseil-cpp =20210324.2
+        - abseil-cpp
         - absl-py >=0.13
         - libprotobuf
         - mypy-protobuf
