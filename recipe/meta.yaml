@@ -22,7 +22,7 @@ source:
 # The meta package
 
 build:
-  number: 2
+  number: 3
   skip: True  # [not linux]
 
 outputs:
