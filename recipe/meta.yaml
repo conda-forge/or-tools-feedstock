@@ -94,6 +94,7 @@ outputs:
         - abseil-cpp
         - absl-py >=0.13
         - libprotobuf
+        - numpy
         - mypy-protobuf
         - pip >=9.0.1
         - python >=3.6
@@ -109,7 +110,7 @@ outputs:
       run:
         - absl-py >=0.13
         - mypy-protobuf
-        - numpy >=1.13.3
+        - {{ pin_compatible('numpy') }}
         - protobuf
         - python >=3.6
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
