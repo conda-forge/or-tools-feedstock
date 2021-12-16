@@ -1,6 +1,6 @@
 {% set name = "or-tools" %}
 {% set package_name = "ortools" %}
-{% set version = "9.1" %}
+{% set version = "9.2" %}
 {% set home = "https://developers.google.com/optimization" %}
 {% set license = "Apache-2.0" %}
 {% set license_family = "Apache" %}
@@ -14,7 +14,7 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: b51ca3b08f768de5a0c1029f7127264640e50d9c7b83383a175109ef213bd307
+  sha256: 5337935ea1fa010bb62cf0fc8bedd6de07dda77bff3db7a0f6a36c84c7bd58db
   patches:
     - 0001-Fix-import-and-fail-install.patch
     - 0002-Do-not-install-dependencies.patch
@@ -22,8 +22,8 @@ source:
 # The meta package
 
 build:
-  number: 3
-  skip: True  # [not linux]
+  number: 0
+  skip: true  # [not linux]
 
 outputs:
   # The core package
@@ -52,7 +52,7 @@ outputs:
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
       run_constrained:
         - scip =7.0.1
-    
+
     test:
       commands:
         - test -f $PREFIX/lib/libortools${SHLIB_EXT}
@@ -66,7 +66,7 @@ outputs:
       license: {{ license }}
       license_family: {{ license_family }}
       license_file: {{ license_file }}
-      summary: 'Google Operations Research Tools (or-tools)'
+      summary: Google Operations Research Tools (or-tools)
       description: |
         OR-Tools is an open source software suite for optimization, tuned for tackling
         the world's toughest problems in vehicle routing, flows, integer and linear
@@ -130,13 +130,13 @@ outputs:
       source_files:
         - cmake/samples/python/sample.py
         - ortools/sat/samples/assignment_sat.py
-    
+
     about:
       home: {{ home }}
       license: {{ license }}
       license_family: {{ license_family }}
       license_file: {{ license_file }}
-      summary: 'Google Operations Research Tools (or-tools) python package'
+      summary: Google Operations Research Tools (or-tools) python package
       description: |
         OR-Tools is an open source software suite for optimization, tuned for tackling
         the world's toughest problems in vehicle routing, flows, integer and linear
@@ -153,7 +153,7 @@ about:
   license: {{ license }}
   license_family: {{ license_family }}
   license_file: {{ license_file }}
-  summary: 'Google Operations Research Tools (or-tools) python package'
+  summary: Google Operations Research Tools (or-tools) python package
   description: |
     OR-Tools is an open source software suite for optimization, tuned for tackling
     the world's toughest problems in vehicle routing, flows, integer and linear
