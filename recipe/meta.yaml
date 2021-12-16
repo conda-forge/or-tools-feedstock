@@ -97,6 +97,7 @@ outputs:
         - mypy-protobuf
         - pip >=9.0.1
         - python >=3.6
+        - virtualenv
         - wheel
         - zlib 1.2.11
         # coin or deps
