@@ -15,8 +15,6 @@ package:
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: 5337935ea1fa010bb62cf0fc8bedd6de07dda77bff3db7a0f6a36c84c7bd58db
-  patches:
-    - 0001-Fix-import-and-fail-install.patch
 
 # The meta package
 
