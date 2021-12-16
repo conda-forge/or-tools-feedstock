@@ -108,6 +108,7 @@ outputs:
       run:
         - absl-py >=0.13
         - mypy-protobuf
+        - numpy >=1.13.3
         - protobuf
         - python >=3.6
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
