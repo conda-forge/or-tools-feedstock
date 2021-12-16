@@ -12,6 +12,7 @@ cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DBUILD_EXAMPLES=OFF \
       -DBUILD_PYTHON=ON \
       -DFETCH_PYTHON_DEPS=OFF \
+      -DENABLE_TEST=OFF \
       -DPython3_EXECUTABLE="$PYTHON"
 
 cmake --build build -j${CPU_COUNT}
