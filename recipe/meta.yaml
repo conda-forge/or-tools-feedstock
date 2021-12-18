@@ -47,6 +47,7 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
+        - python
       run_constrained:
         - scip =7.0.1
 
