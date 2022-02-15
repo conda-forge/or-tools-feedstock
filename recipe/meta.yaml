@@ -20,7 +20,7 @@ source:
 
 build:
   number: 1
-  skip: true  # [not linux]
+  skip: true  # [win]
 
 outputs:
   # The core package
