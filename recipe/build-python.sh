@@ -13,7 +13,8 @@ cmake ${CMAKE_ARGS} -DCMAKE_INSTALL_PREFIX=$PREFIX \
       -DBUILD_PYTHON=ON \
       -DFETCH_PYTHON_DEPS=OFF \
       -DBUILD_TESTING=OFF \
-      -DPython3_EXECUTABLE="$PYTHON"
+      -DPython3_EXECUTABLE="$PYTHON" \
+      -DCMAKE_CXX_STANDARD=17
 
 cmake --build build -j${CPU_COUNT}
 
