@@ -4,7 +4,7 @@
 {% set home = "https://developers.google.com/optimization" %}
 {% set license = "Apache-2.0" %}
 {% set license_family = "Apache" %}
-{% set license_file = "LICENSE-2.0.txt" %}
+{% set license_file = "LICENSE" %}
 {% set dev_url = "https://github.com/google/or-tools" %}
 
 
