@@ -38,7 +38,10 @@ outputs:
         - pkg-config
       host:
         - abseil-cpp
+        - eigen 3.4.0
         - libprotobuf
+        - re2
+        # Globally pinned
         - zlib 1.2.11
         # coin or deps
         - coin-or-utils
@@ -49,7 +52,7 @@ outputs:
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
         - python
       run_constrained:
-        - scip =7.0.1
+        - scip >=7.0.1
 
     test:
       commands:
@@ -94,11 +97,14 @@ outputs:
       host:
         - abseil-cpp
         - absl-py >=0.13
+        - eigen 3.4.0
         - libprotobuf
         - numpy
         - mypy-protobuf
         - pip >=9.0.1
+        - pybind11
         - python >=3.6
+        - re2
         - virtualenv
         - wheel
         - zlib 1.2.11
@@ -116,7 +122,7 @@ outputs:
         - python >=3.6
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
       run_constrained:
-        - scip =7.0.1
+        - scip >=7.0.1
 
     test:
       imports:
