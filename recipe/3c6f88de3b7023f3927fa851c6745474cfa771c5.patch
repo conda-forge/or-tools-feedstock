@@ -1,0 +1,178 @@
+From 3c6f88de3b7023f3927fa851c6745474cfa771c5 Mon Sep 17 00:00:00 2001
+From: Corentin Le Molgat <corentinl@google.com>
+Date: Thu, 24 Mar 2022 13:35:24 +0100
+Subject: [PATCH] c++: Add USE_LP_PARSER define (#3201)
+
+---
+ cmake/cpp.cmake                                             | 3 +++
+ ortools/lp_data/BUILD.bazel                                 | 1 +
+ ortools/lp_data/CMakeLists.txt                              | 5 -----
+ ortools/lp_data/lp_parser.cc                                | 2 ++
+ ortools/lp_data/lp_parser.h                                 | 4 ++++
+ ortools/model_builder/python/pywrap_model_builder_helper.cc | 2 ++
+ ortools/model_builder/wrappers/model_builder_helper.cc      | 4 ++++
+ ortools/model_builder/wrappers/model_builder_helper.h       | 2 ++
+ tools/Makefile.cc.java.dotnet                               | 4 ++--
+ 9 files changed, 20 insertions(+), 7 deletions(-)
+
+diff --git a/cmake/cpp.cmake b/cmake/cpp.cmake
+index 414d878242..bf97b22219 100644
+--- a/cmake/cpp.cmake
++++ b/cmake/cpp.cmake
+@@ -19,6 +19,9 @@ list(APPEND OR_TOOLS_COMPILE_DEFINITIONS
+   "USE_BOP" # enable BOP support
+   "USE_GLOP" # enable GLOP support
+   )
++if(BUILD_LP_PARSER)
++  list(APPEND OR_TOOLS_COMPILE_DEFINITIONS "USE_LP_PARSER")
++endif()
+ if(USE_COINOR)
+   list(APPEND OR_TOOLS_COMPILE_DEFINITIONS
+     "USE_CBC" # enable COIN-OR CBC support
+diff --git a/ortools/lp_data/BUILD.bazel b/ortools/lp_data/BUILD.bazel
+index eab8fa95c7..8a9bea48e3 100644
+--- a/ortools/lp_data/BUILD.bazel
++++ b/ortools/lp_data/BUILD.bazel
+@@ -239,6 +239,7 @@ cc_library(
+         "@com_google_absl//absl/strings",
+         "@com_google_re2//:re2",
+     ],
++    defines = ["USE_LP_PARSER"],
+ )
+ 
+ #cc_library(
+diff --git a/ortools/lp_data/CMakeLists.txt b/ortools/lp_data/CMakeLists.txt
+index f290d57f4f..d7f29bf30e 100644
+--- a/ortools/lp_data/CMakeLists.txt
++++ b/ortools/lp_data/CMakeLists.txt
+@@ -1,9 +1,4 @@
+ file(GLOB _SRCS "*.h" "*.cc")
+-if(NOT BUILD_LP_PARSER)
+-  list(FILTER _SRCS EXCLUDE REGEX ".*/lp_parser.h")
+-  list(FILTER _SRCS EXCLUDE REGEX ".*/lp_parser.cc")
+-endif()
+-
+ set(NAME ${PROJECT_NAME}_lp_data)
+ 
+ # Will be merge in libortools.so
+diff --git a/ortools/lp_data/lp_parser.cc b/ortools/lp_data/lp_parser.cc
+index 9e73ea0879..93e715a180 100644
+--- a/ortools/lp_data/lp_parser.cc
++++ b/ortools/lp_data/lp_parser.cc
+@@ -10,6 +10,7 @@
+ // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ // See the License for the specific language governing permissions and
+ // limitations under the License.
++#if defined(USE_LP_PARSER)
+ 
+ #include "ortools/lp_data/lp_parser.h"
+ 
+@@ -463,3 +464,4 @@ absl::StatusOr<MPModelProto> ModelProtoFromLpFormat(absl::string_view model) {
+ }
+ 
+ }  // namespace operations_research
++#endif  // #if defined(USE_LP_PARSER)
+diff --git a/ortools/lp_data/lp_parser.h b/ortools/lp_data/lp_parser.h
+index 0102c20cd1..bfea88c132 100644
+--- a/ortools/lp_data/lp_parser.h
++++ b/ortools/lp_data/lp_parser.h
+@@ -74,6 +74,8 @@
+ #ifndef OR_TOOLS_LP_DATA_LP_PARSER_H_
+ #define OR_TOOLS_LP_DATA_LP_PARSER_H_
+ 
++#if defined(USE_LP_PARSER)
++
+ #include <string>
+ #include <vector>
+ 
+@@ -121,4 +123,6 @@ absl::StatusOr<ParsedConstraint> ParseConstraint(absl::string_view constraint);
+ }  // namespace glop
+ }  // namespace operations_research
+ 
++#endif  // #if defined(USE_LP_PARSER)
++
+ #endif  // OR_TOOLS_LP_DATA_LP_PARSER_H_
+diff --git a/ortools/model_builder/python/pywrap_model_builder_helper.cc b/ortools/model_builder/python/pywrap_model_builder_helper.cc
+index 083e7fb924..e1b5e34802 100644
+--- a/ortools/model_builder/python/pywrap_model_builder_helper.cc
++++ b/ortools/model_builder/python/pywrap_model_builder_helper.cc
+@@ -122,10 +122,12 @@ PYBIND11_MODULE(pywrap_model_builder_helper, m) {
+            arg("mps_string"))
+       .def("ImportFromMpsFile", &ModelBuilderHelper::ImportFromMpsFile,
+            arg("mps_file"))
++#if defined(USE_LP_PARSER)
+       .def("ImportFromLpString", &ModelBuilderHelper::ImportFromLpString,
+            arg("lp_string"))
+       .def("ImportFromLpFile", &ModelBuilderHelper::ImportFromLpFile,
+            arg("lp_file"))
++#endif // #if defined(USE_LP_PARSER)
+       .def(
+           "FillModelFromSparseData",
+           [](ModelBuilderHelper* helper,
+diff --git a/ortools/model_builder/wrappers/model_builder_helper.cc b/ortools/model_builder/wrappers/model_builder_helper.cc
+index eabebed7fa..266ccde7c0 100644
+--- a/ortools/model_builder/wrappers/model_builder_helper.cc
++++ b/ortools/model_builder/wrappers/model_builder_helper.cc
+@@ -19,7 +19,9 @@
+ 
+ #include "ortools/linear_solver/linear_solver.h"
+ #include "ortools/linear_solver/linear_solver.pb.h"
++#if defined(USE_LP_PARSER)
+ #include "ortools/lp_data/lp_parser.h"
++#endif // #if defined(USE_LP_PARSER)
+ #include "ortools/lp_data/mps_reader.h"
+ 
+ namespace operations_research {
+@@ -62,6 +64,7 @@ bool ModelBuilderHelper::ImportFromMpsFile(const std::string& mps_file) {
+   return true;
+ }
+ 
++#if defined(USE_LP_PARSER)
+ bool ModelBuilderHelper::ImportFromLpString(const std::string& lp_string) {
+   absl::StatusOr<MPModelProto> model_or = ModelProtoFromLpFormat(lp_string);
+   if (!model_or.ok()) return false;
+@@ -79,6 +82,7 @@ bool ModelBuilderHelper::ImportFromLpFile(const std::string& lp_file) {
+   model_ = model_or.value();
+   return true;
+ }
++#endif // #if defined(USE_LP_PARSER)
+ 
+ const MPModelProto& ModelBuilderHelper::model() const { return model_; }
+ 
+diff --git a/ortools/model_builder/wrappers/model_builder_helper.h b/ortools/model_builder/wrappers/model_builder_helper.h
+index 101c8f0c9a..e39750c4f2 100644
+--- a/ortools/model_builder/wrappers/model_builder_helper.h
++++ b/ortools/model_builder/wrappers/model_builder_helper.h
+@@ -52,8 +52,10 @@ class ModelBuilderHelper {
+ 
+   bool ImportFromMpsString(const std::string& mps_string);
+   bool ImportFromMpsFile(const std::string& mps_file);
++#if defined(USE_LP_PARSER)
+   bool ImportFromLpString(const std::string& lp_string);
+   bool ImportFromLpFile(const std::string& lp_file);
++#endif // #if defined(USE_LP_PARSER)
+ 
+   const MPModelProto& model() const;
+   MPModelProto* mutable_model();
+diff --git a/tools/Makefile.cc.java.dotnet b/tools/Makefile.cc.java.dotnet
+index 012c932bcc..908daccb23 100644
+--- a/tools/Makefile.cc.java.dotnet
++++ b/tools/Makefile.cc.java.dotnet
+@@ -69,7 +69,7 @@ ifeq ($(SYSTEM),unix)
+   DEBUG = -O4 -DNDEBUG
+   CXXFLAGS = -fPIC -std=c++17 $(DEBUG) \
+  -I$(INC_DIR) -I. $(ARCH) -Wno-deprecated \
+- -DUSE_BOP -DUSE_GLOP -DUSE_PDLP \
++ -DUSE_BOP -DUSE_GLOP -DUSE_PDLP -DUSE_LP_PARSER \
+  -DUSE_CBC -DUSE_CLP \
+  -DUSE_SCIP
+   LIB_PREFIX = lib
+@@ -132,7 +132,7 @@ ifeq ($(SYSTEM),win)
+     /DPSAPI_VERSION=1 /D__WIN32__ /DNOMINMAX /DWIN32_LEAN_AND_MEAN=1 /D_CRT_SECURE_NO_WARNINGS \
+     /DGOOGLE_GLOG_DLL_DECL= \
+     /I$(INC_DIR)\\src\\windows /I$(INC_DIR) /I. \
+-    /DUSE_BOP /DUSE_GLOP /DUSE_PDLP \
++    /DUSE_BOP /DUSE_GLOP /DUSE_PDLP /DUSE_LP_PARSER \
+     /DUSE_CBC /DUSE_CLP \
+     /DUSE_SCIP
+   LDFLAGS = psapi.lib ws2_32.lib

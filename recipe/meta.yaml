@@ -15,6 +15,8 @@ package:
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: 6fe981326563136fbb7a697547dc0fe6495914b5b42df559c2d88b35f6bcc661
+  patches:
+    - 3c6f88de3b7023f3927fa851c6745474cfa771c5.patch
 
 # The meta package
 
