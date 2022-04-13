@@ -13,8 +13,8 @@ package:
   version: {{ version }}
 
 source:
-  git_url: https://github.com/google/or-tools/tree/master.git
-  git_depth: 1
+  git_url: https://github.com/google/or-tools.git
+  git_tag: master
 
 # The meta package
 
