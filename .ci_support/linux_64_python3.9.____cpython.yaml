@@ -34,6 +34,8 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.9.* *_cpython
+re2:
+- 2022.02.01
 target_platform:
 - linux-64
 zip_keys:
