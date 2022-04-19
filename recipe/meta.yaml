@@ -1,10 +1,10 @@
 {% set name = "or-tools" %}
 {% set package_name = "ortools" %}
-{% set version = "9.2" %}
+{% set version = "9.4" %}
 {% set home = "https://developers.google.com/optimization" %}
 {% set license = "Apache-2.0" %}
 {% set license_family = "Apache" %}
-{% set license_file = "LICENSE-2.0.txt" %}
+{% set license_file = "LICENSE" %}
 {% set dev_url = "https://github.com/google/or-tools" %}
 
 
@@ -19,7 +19,7 @@ source:
 # The meta package
 
 build:
-  number: 3
+  number: 0
   skip: true  # [not linux]
 
 outputs:
@@ -39,6 +39,7 @@ outputs:
       host:
         - abseil-cpp
         - libprotobuf
+        - re2
         - zlib 1.2.11
         # coin or deps
         - coin-or-utils
@@ -95,6 +96,7 @@ outputs:
         - abseil-cpp
         - absl-py >=0.13
         - libprotobuf
+        - re2
         - numpy
         - mypy-protobuf
         - pip >=9.0.1
