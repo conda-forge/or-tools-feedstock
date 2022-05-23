@@ -1,4 +1,4 @@
-{% set version = "9.2" %}
+{% set version = "9.3" %}
 
 package:
   name: or-tools-package
@@ -6,12 +6,12 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: 5337935ea1fa010bb62cf0fc8bedd6de07dda77bff3db7a0f6a36c84c7bd58db
+  sha256: 6fe981326563136fbb7a697547dc0fe6495914b5b42df559c2d88b35f6bcc661
 
 # The meta package
 
 build:
-  number: 8
+  number: 0
   skip: true  # [not linux]
 
 outputs:
