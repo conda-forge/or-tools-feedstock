@@ -8,30 +8,6 @@ jobs:
     vmImage: ubuntu-latest
   strategy:
     matrix:
-      linux_64_abseil_cpp20210324.2python3.10.____cpython:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.10.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_abseil_cpp20210324.2python3.7.____cpython:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.7.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_abseil_cpp20210324.2python3.8.____73_pypy:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.8.____73_pypy
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_abseil_cpp20210324.2python3.8.____cpython:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.8.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_abseil_cpp20210324.2python3.9.____73_pypy:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.9.____73_pypy
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
-      linux_64_abseil_cpp20210324.2python3.9.____cpython:
-        CONFIG: linux_64_abseil_cpp20210324.2python3.9.____cpython
-        UPLOAD_PACKAGES: 'True'
-        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_abseil_cpp20211102.0python3.10.____cpython:
         CONFIG: linux_64_abseil_cpp20211102.0python3.10.____cpython
         UPLOAD_PACKAGES: 'True'
@@ -54,6 +30,30 @@ jobs:
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
       linux_64_abseil_cpp20211102.0python3.9.____cpython:
         CONFIG: linux_64_abseil_cpp20211102.0python3.9.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.10.____cpython:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.10.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.7.____cpython:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.7.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.8.____73_pypy:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.8.____73_pypy
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.8.____cpython:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.8.____cpython
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.9.____73_pypy:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.9.____73_pypy
+        UPLOAD_PACKAGES: 'True'
+        DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
+      linux_64_abseil_cpp20220623.0python3.9.____cpython:
+        CONFIG: linux_64_abseil_cpp20220623.0python3.9.____cpython
         UPLOAD_PACKAGES: 'True'
         DOCKER_IMAGE: quay.io/condaforge/linux-anvil-cos7-x86_64
   timeoutInMinutes: 360
