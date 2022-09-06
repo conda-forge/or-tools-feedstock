@@ -128,4 +128,5 @@ extra:
   recipe-maintainers:
     - wolfv
     - BastianZim
+    - h-vetinari
   feedstock-name: or-tools
