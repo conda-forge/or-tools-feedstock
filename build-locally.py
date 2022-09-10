@@ -86,19 +86,12 @@ def main(args=None):
     verify_config(ns)
     setup_environment(ns)
 
-    try:
-        if ns.config.startswith("linux") or (
-            ns.config.startswith("osx") and platform.system() == "Linux"
-        ):
-            run_docker_build(ns)
-        elif ns.config.startswith("osx"):
-            run_osx_build(ns)
-    finally:
-        recipe_license_file = os.path.join(
-            "recipe", "recipe-scripts-license.txt"
-        )
-        if os.path.exists(recipe_license_file):
-            os.remove(recipe_license_file)
+    if ns.config.startswith("linux") or (
+        ns.config.startswith("osx") and platform.system() == "Linux"
+    ):
+        run_docker_build(ns)
+    elif ns.config.startswith("osx"):
+        run_osx_build(ns)
 
 
 if __name__ == "__main__":
