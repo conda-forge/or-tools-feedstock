@@ -31,6 +31,7 @@ outputs:
       host:
         - libabseil
         - libprotobuf
+        - re2
         - zlib
         # coin or deps
         - coin-or-utils
