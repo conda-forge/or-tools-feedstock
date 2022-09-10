@@ -19,7 +19,7 @@ source:
 # The meta package
 
 build:
-  number: 5
+  number: 6
   skip: true  # [not linux]
 
 outputs:
