@@ -80,7 +80,7 @@ outputs:
         # coin or deps
         - coin-or-utils
         - coin-or-osi
-        - coin-or-clp
+        - coin-or-clp =1.17.4
         - coin-or-cgl
         - coin-or-cbc
       run:
