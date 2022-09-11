@@ -1,7 +1,7 @@
 {% set version = "9.2" %}
 
 package:
-  name: or-tools
+  name: or-tools-package
   version: {{ version }}
 
 source:
