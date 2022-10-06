@@ -27,12 +27,10 @@ libabseil:
 libprotobuf:
 - '3.21'
 numpy:
-- '1.19'
+- '1.20'
 pin_run_as_build:
   python:
     min_pin: x.x
-    max_pin: x.x
-  zlib:
     max_pin: x.x
 python:
 - 3.8.* *_73_pypy
