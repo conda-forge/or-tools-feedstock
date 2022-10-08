@@ -11,7 +11,7 @@ source:
 # The meta package
 
 build:
-  number: 7
+  number: 8
   skip: true  # [not linux]
 
 outputs:
@@ -35,7 +35,7 @@ outputs:
         # coin or deps
         - coin-or-utils
         - coin-or-osi
-        - coin-or-clp =1.17.4
+        - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
@@ -80,7 +80,7 @@ outputs:
         # coin or deps
         - coin-or-utils
         - coin-or-osi
-        - coin-or-clp =1.17.4
+        - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
       run:
