@@ -1,4 +1,4 @@
-{% set version = "9.4" %}
+{% set version = "9.5" %}
 
 package:
   name: or-tools-package
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: 180fbc45f6e5ce5ff153bea2df0df59b15346f2a7f8ffbd7cb4aed0fb484b8f6
+  sha256: 57f81b94949d35dc042690db3fa3f53245cffbf6824656e1a03f103a3623c939
   patches:
     # minimal fix for https://github.com/google/or-tools/issues/3698
     - patches/0001-ensure-we-re-using-the-right-abseil-macro.patch
@@ -14,7 +14,7 @@ source:
 # The meta package
 
 build:
-  number: 1
+  number: 0
   skip: true  # [not linux]
 
 outputs:
