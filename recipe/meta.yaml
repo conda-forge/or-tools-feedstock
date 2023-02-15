@@ -29,6 +29,8 @@ outputs:
         - make
         - pkg-config
       host:
+        # eigen does not have a run-export but is header-only
+        - eigen
         - libabseil
         - libprotobuf
         - re2
