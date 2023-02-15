@@ -24,9 +24,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake >=3.18
-        # Source: https://github.com/google/or-tools/blob/stable/cmake/python.cmake#L6
-        - git
-        - make
+        - ninja
         - pkg-config
       host:
         # eigen does not have a run-export but is header-only
@@ -64,7 +62,7 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.18
         - git
-        - make
+        - ninja
         - mypy-protobuf
         - pkg-config
         - setuptools
