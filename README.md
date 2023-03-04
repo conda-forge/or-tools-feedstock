@@ -1,11 +1,11 @@
-About or-tools
-==============
+About or-tools-feedstock
+========================
+
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/or-tools-feedstock/blob/main/LICENSE.txt)
 
 Home: https://developers.google.com/optimization
 
 Package license: Apache-2.0
-
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/or-tools-feedstock/blob/main/LICENSE.txt)
 
 Summary: Google Operations Research Tools (or-tools) python package
 
