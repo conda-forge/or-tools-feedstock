@@ -115,7 +115,7 @@ about:
   home: https://developers.google.com/optimization
   license: Apache-2.0
   license_family: Apache
-  license_file: LICENSE-2.0.txt
+  license_file: LICENSE
   summary: Google Operations Research Tools (or-tools) python package
   description: |
     OR-Tools is an open source software suite for optimization, tuned for tackling
