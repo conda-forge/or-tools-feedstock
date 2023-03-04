@@ -71,15 +71,15 @@ outputs:
         - setuptools
         - swig >=4.0
       host:
-        - libabseil
+        - python
+        - pip
         - absl-py >=0.13
-        - libprotobuf
         - numpy
         - mypy-protobuf
-        - pip >=9.0.1
-        - python >=3.6
-        - virtualenv
         - wheel
+        # C/C++ deps
+        - libabseil
+        - libprotobuf
         - zlib
         # coin or deps
         - coin-or-utils
@@ -92,7 +92,7 @@ outputs:
         - mypy-protobuf
         - {{ pin_compatible('numpy') }}
         - protobuf
-        - python >=3.6
+        - python
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
       run_constrained:
         - scip =7.0.1
