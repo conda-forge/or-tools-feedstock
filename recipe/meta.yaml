@@ -7,6 +7,9 @@ package:
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: 180fbc45f6e5ce5ff153bea2df0df59b15346f2a7f8ffbd7cb4aed0fb484b8f6
+  patches:
+    # minimal fix for https://github.com/google/or-tools/issues/3698
+    - patches/0001-ensure-we-re-using-the-right-abseil-macro.patch
 
 # The meta package
 
