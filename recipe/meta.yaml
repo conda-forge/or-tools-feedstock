@@ -78,6 +78,7 @@ outputs:
         - mypy-protobuf
         - wheel
         # C/C++ deps
+        - eigen
         - libabseil
         - libprotobuf
         - pybind11
