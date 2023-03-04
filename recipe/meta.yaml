@@ -69,7 +69,7 @@ outputs:
         - mypy-protobuf
         - pkg-config
         - setuptools
-        - swig >=4.0
+        - swig >=4.0,<4.1
       host:
         - python
         - pip
