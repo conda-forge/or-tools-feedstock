@@ -80,6 +80,8 @@ outputs:
         # C/C++ deps
         - libabseil
         - libprotobuf
+        - pybind11
+        - re2
         - zlib
         # coin or deps
         - coin-or-utils

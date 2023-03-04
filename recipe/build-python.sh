@@ -15,6 +15,7 @@ cmake -G Ninja \
       -DBUILD_SAMPLES=OFF \
       -DBUILD_EXAMPLES=OFF \
       -DBUILD_PYTHON=ON \
+      -DBUILD_pybind11=OFF \
       -DFETCH_PYTHON_DEPS=OFF \
       -DBUILD_TESTING=OFF \
       -DPython3_EXECUTABLE="$PYTHON"
