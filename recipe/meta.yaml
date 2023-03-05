@@ -21,7 +21,9 @@ outputs:
   # The core package
   - name: libortools
     script: build-cpp.sh
-
+    build:
+      run_exports:
+        - {{ pin_subpackage('libortools', max_pin='x.x') }}
     requirements:
       build:
         - {{ compiler('c') }}
@@ -59,6 +61,9 @@ outputs:
 
   # for compatibility with previous output "ortools-cpp"
   - name: ortools-cpp
+    build:
+      run_exports:
+        - {{ pin_subpackage('libortools', max_pin='x.x') }}
     requirements:
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
