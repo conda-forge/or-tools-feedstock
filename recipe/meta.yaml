@@ -19,7 +19,7 @@ build:
 
 outputs:
   # The core package
-  - name: ortools-cpp
+  - name: libortools
     script: build-cpp.sh
 
     requirements:
@@ -46,6 +46,8 @@ outputs:
         - python
       run_constrained:
         - scip =7.0.1
+        # make sure we don't co-install with old version of previous package name
+        - ortools-cpp ={{ version }}
 
     test:
       commands:
@@ -54,6 +56,18 @@ outputs:
         - test -f $PREFIX/lib/cmake/ortools/ortoolsConfig.cmake
         - test -f $PREFIX/include/ortools_export.h
         - test -f $PREFIX/include/ortools/algorithms/dense_doubly_linked_list.h
+
+  # for compatibility with previous output "ortools-cpp"
+  - name: ortools-cpp
+    requirements:
+      host:
+        - {{ pin_subpackage('libortools', exact=True) }}
+      run:
+        - {{ pin_subpackage('libortools', exact=True) }}
+    test:
+      commands:
+        # tested in other outputs
+        - echo "hello"
 
       # The python package.
   - name: ortools-python
