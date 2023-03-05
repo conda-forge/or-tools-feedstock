@@ -66,6 +66,7 @@ outputs:
         - cmake >=3.18
         - git
         - ninja
+        - python
         - mypy-protobuf
         - pkg-config
         - setuptools
