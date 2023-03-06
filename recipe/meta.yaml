@@ -24,6 +24,8 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
+      ignore_run_exports_from:
+        - python
     requirements:
       build:
         - {{ compiler('c') }}
@@ -45,6 +47,9 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
+        # fake python dependency to avoid conda-smithy collapsing the builds per arch;
+        # we can remove this once we manage to base the python bindings on libortools
+        - python
       run_constrained:
         # make sure we don't co-install with old version of previous package name
         - ortools-cpp ={{ version }}
