@@ -36,6 +36,7 @@ requirements:
     - libabseil
     - libprotobuf
     - re2
+    - scip
     - zlib
     # coin or deps
     - coin-or-utils
@@ -62,6 +63,7 @@ outputs:
         - libabseil
         - libprotobuf
         - re2
+        - scip
         - zlib
         - coin-or-utils
         - coin-or-osi

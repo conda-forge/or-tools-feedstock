@@ -27,7 +27,6 @@ cmake -G Ninja \
     -DFETCH_PYTHON_DEPS=OFF \
     -DBUILD_pybind11=OFF \
     -DPython3_EXECUTABLE="$PYTHON" \
-    -DUSE_SCIP=OFF \
     ..
 
 cmake --build . -j${CPU_COUNT}

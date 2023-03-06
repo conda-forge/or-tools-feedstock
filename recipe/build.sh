@@ -26,7 +26,7 @@ cmake -G Ninja \
     -DUSE_GLPK=OFF \
     -DUSE_HIGHS=OFF \
     -DUSE_PDLP=ON \
-    -DUSE_SCIP=OFF \
+    -DUSE_SCIP=ON \
     -DUSE_XPRESS=OFF \
     ..
 
