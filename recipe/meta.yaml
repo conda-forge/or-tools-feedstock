@@ -14,7 +14,7 @@ source:
 # The meta package
 
 build:
-  number: 0
+  number: 1
   skip: true  # [not linux]
 
 outputs:
@@ -45,9 +45,7 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
         # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
-        - python
       run_constrained:
-        - scip =7.0.1
         # make sure we don't co-install with old version of previous package name
         - ortools-cpp ={{ version }}
 
@@ -117,8 +115,6 @@ outputs:
         - protobuf
         - python
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
-      run_constrained:
-        - scip =7.0.1
 
     test:
       imports:

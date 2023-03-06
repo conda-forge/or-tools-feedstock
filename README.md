@@ -25,7 +25,14 @@ Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>Travis</td>
+    <td>
+      <a href="https://app.travis-ci.com/conda-forge/or-tools-feedstock">
+        <img alt="linux" src="https://img.shields.io/travis/com/conda-forge/or-tools-feedstock/main.svg?label=Linux">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
@@ -73,6 +80,76 @@ Current build status
                   <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_python3.9.____cpython" alt="variant">
                 </a>
               </td>
+            </tr><tr>
+              <td>linux_aarch64_python3.10.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_python3.10.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_python3.8.____73_pypy</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_python3.8.____73_pypy" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_python3.8.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_python3.9.____73_pypy</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_python3.9.____73_pypy" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_python3.9.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_python3.10.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_python3.10.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_python3.8.____73_pypy</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_python3.8.____73_pypy" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_python3.8.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_python3.8.____cpython" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_python3.9.____73_pypy</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_python3.9.____73_pypy" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_python3.9.____cpython</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_python3.9.____cpython" alt="variant">
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -86,6 +163,7 @@ Current release info
 
 | Name | Downloads | Version | Platforms |
 | --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-libortools-green.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--cpp-green.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--python-green.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) |
 
@@ -99,41 +177,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `ortools-cpp, ortools-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libortools, ortools-cpp, ortools-python` can be installed with `conda`:
 
 ```
-conda install ortools-cpp ortools-python
-```
-
-or with `mamba`:
-
-```
-mamba install ortools-cpp ortools-python
-```
-
-It is possible to list all of the versions of `ortools-cpp` available on your platform with `conda`:
-
-```
-conda search ortools-cpp --channel conda-forge
+conda install libortools ortools-cpp ortools-python
 ```
 
 or with `mamba`:
 
 ```
-mamba search ortools-cpp --channel conda-forge
+mamba install libortools ortools-cpp ortools-python
+```
+
+It is possible to list all of the versions of `libortools` available on your platform with `conda`:
+
+```
+conda search libortools --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libortools --channel conda-forge
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search ortools-cpp --channel conda-forge
+mamba repoquery search libortools --channel conda-forge
 
-# List packages depending on `ortools-cpp`:
-mamba repoquery whoneeds ortools-cpp --channel conda-forge
+# List packages depending on `libortools`:
+mamba repoquery whoneeds libortools --channel conda-forge
 
-# List dependencies of `ortools-cpp`:
-mamba repoquery depends ortools-cpp --channel conda-forge
+# List dependencies of `libortools`:
+mamba repoquery depends libortools --channel conda-forge
 ```
 
 
