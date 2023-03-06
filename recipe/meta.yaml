@@ -15,7 +15,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [not linux]
+  skip: true  # [not (linux or win)]
 
 outputs:
   # The core package
