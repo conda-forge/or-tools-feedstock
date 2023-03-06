@@ -1,26 +1,26 @@
-From 57c0a635066af900be819645d11cd477f7d183c1 Mon Sep 17 00:00:00 2001
+From 8beedc50e6ee6eec87e29bc59d121c08e694cd9b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Sat, 4 Mar 2023 19:12:41 +1100
 Subject: [PATCH] ensure we're using the right abseil macro
 
 see https://github.com/google/or-tools/issues/3698
 ---
- ortools/base/logging.cc | 11 ++++++-----
+ ortools/base/log.cc | 11 ++++++-----
  1 file changed, 6 insertions(+), 5 deletions(-)
 
-diff --git a/ortools/base/logging.cc b/ortools/base/logging.cc
-index 1e1fd161a..16c15f854 100644
---- a/ortools/base/logging.cc
-+++ b/ortools/base/logging.cc
+diff --git a/ortools/base/log.cc b/ortools/base/log.cc
+index 0d77f7aa3..77316553b 100644
+--- a/ortools/base/log.cc
++++ b/ortools/base/log.cc
 @@ -46,6 +46,7 @@
  #include <vector>
  
  #include "absl/debugging/stacktrace.h"
 +#include "absl/synchronization/mutex.h"
  #include "absl/time/time.h"
- #include "ortools/base/commandlineflags.h"
  #include "ortools/base/logging_utilities.h"
-@@ -1269,7 +1270,7 @@ void ReprintFatalMessage() {
+ #include "ortools/base/raw_logging.h"
+@@ -1268,7 +1269,7 @@ void ReprintFatalMessage() {
  }
  
  // L >= log_mutex (callers must hold the log_mutex).
@@ -29,7 +29,7 @@ index 1e1fd161a..16c15f854 100644
    static bool already_warned_before_initgoogle = false;
  
    log_mutex.AssertHeld();
-@@ -1393,7 +1394,7 @@ void InstallFailureFunction(void (*fail_func)()) {
+@@ -1392,7 +1393,7 @@ void InstallFailureFunction(void (*fail_func)()) {
  void LogMessage::Fail() { g_logging_fail_func(); }
  
  // L >= log_mutex (callers must hold the log_mutex).
@@ -38,7 +38,7 @@ index 1e1fd161a..16c15f854 100644
    if (data_->sink_ != nullptr) {
      RAW_DCHECK(data_->num_chars_to_log_ > 0 &&
                     data_->message_text_[data_->num_chars_to_log_ - 1] == '\n',
-@@ -1406,13 +1407,13 @@ void LogMessage::SendToSink() EXCLUSIVE_LOCKS_REQUIRED(log_mutex) {
+@@ -1405,13 +1406,13 @@ void LogMessage::SendToSink() EXCLUSIVE_LOCKS_REQUIRED(log_mutex) {
  }
  
  // L >= log_mutex (callers must hold the log_mutex).
@@ -54,7 +54,7 @@ index 1e1fd161a..16c15f854 100644
    if (data_->outvec_ != nullptr) {
      RAW_DCHECK(data_->num_chars_to_log_ > 0 &&
                     data_->message_text_[data_->num_chars_to_log_ - 1] == '\n',
-@@ -1426,7 +1427,7 @@ void LogMessage::SaveOrSendToLog() EXCLUSIVE_LOCKS_REQUIRED(log_mutex) {
+@@ -1425,7 +1426,7 @@ void LogMessage::SaveOrSendToLog() EXCLUSIVE_LOCKS_REQUIRED(log_mutex) {
    }
  }
  
