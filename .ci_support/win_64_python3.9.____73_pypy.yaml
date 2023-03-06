@@ -1,0 +1,39 @@
+c_compiler:
+- vs2019
+channel_sources:
+- conda-forge
+channel_targets:
+- conda-forge main
+coin_or_cbc:
+- '2.10'
+coin_or_cgl:
+- '0.60'
+coin_or_clp:
+- '1.17'
+coin_or_osi:
+- '0.108'
+coin_or_utils:
+- '2.11'
+cxx_compiler:
+- vs2019
+libabseil:
+- '20230125'
+libprotobuf:
+- '3.21'
+numpy:
+- '1.20'
+pin_run_as_build:
+  python:
+    min_pin: x.x
+    max_pin: x.x
+python:
+- 3.9.* *_73_pypy
+re2:
+- 2023.02.02
+target_platform:
+- win-64
+zip_keys:
+- - python
+  - numpy
+zlib:
+- '1.2'
