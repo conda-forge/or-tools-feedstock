@@ -1,4 +1,4 @@
-{% set version = "9.2" %}
+{% set version = "9.4" %}
 
 package:
   name: or-tools-package
@@ -6,31 +6,37 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: 5337935ea1fa010bb62cf0fc8bedd6de07dda77bff3db7a0f6a36c84c7bd58db
+  sha256: 180fbc45f6e5ce5ff153bea2df0df59b15346f2a7f8ffbd7cb4aed0fb484b8f6
+  patches:
+    # minimal fix for https://github.com/google/or-tools/issues/3698
+    - patches/0001-ensure-we-re-using-the-right-abseil-macro.patch
 
 # The meta package
 
 build:
-  number: 8
+  number: 0
   skip: true  # [not linux]
 
 outputs:
   # The core package
-  - name: ortools-cpp
+  - name: libortools
     script: build-cpp.sh
-
+    build:
+      run_exports:
+        - {{ pin_subpackage('libortools', max_pin='x.x') }}
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake >=3.18
-        # Source: https://github.com/google/or-tools/blob/stable/cmake/python.cmake#L6
-        - git
-        - make
+        - ninja
         - pkg-config
       host:
+        # eigen does not have a run-export but is header-only
+        - eigen
         - libabseil
         - libprotobuf
+        - re2
         - zlib
         # coin or deps
         - coin-or-utils
@@ -42,6 +48,8 @@ outputs:
         - python
       run_constrained:
         - scip =7.0.1
+        # make sure we don't co-install with old version of previous package name
+        - ortools-cpp ={{ version }}
 
     test:
       commands:
@@ -50,6 +58,21 @@ outputs:
         - test -f $PREFIX/lib/cmake/ortools/ortoolsConfig.cmake
         - test -f $PREFIX/include/ortools_export.h
         - test -f $PREFIX/include/ortools/algorithms/dense_doubly_linked_list.h
+
+  # for compatibility with previous output "ortools-cpp"
+  - name: ortools-cpp
+    build:
+      run_exports:
+        - {{ pin_subpackage('libortools', max_pin='x.x') }}
+    requirements:
+      host:
+        - {{ pin_subpackage('libortools', exact=True) }}
+      run:
+        - {{ pin_subpackage('libortools', exact=True) }}
+    test:
+      commands:
+        # tested in other outputs
+        - echo "hello"
 
       # The python package.
   - name: ortools-python
@@ -61,21 +84,25 @@ outputs:
         - {{ compiler('cxx') }}
         - cmake >=3.18
         - git
-        - make
+        - ninja
+        - python
         - mypy-protobuf
         - pkg-config
         - setuptools
-        - swig >=4.0
+        - swig >=4.0,<4.1
       host:
-        - libabseil
+        - python
+        - pip
         - absl-py >=0.13
-        - libprotobuf
         - numpy
         - mypy-protobuf
-        - pip >=9.0.1
-        - python >=3.6
-        - virtualenv
         - wheel
+        # C/C++ deps
+        - eigen
+        - libabseil
+        - libprotobuf
+        - pybind11
+        - re2
         - zlib
         # coin or deps
         - coin-or-utils
@@ -88,7 +115,7 @@ outputs:
         - mypy-protobuf
         - {{ pin_compatible('numpy') }}
         - protobuf
-        - python >=3.6
+        - python
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
       run_constrained:
         - scip =7.0.1
@@ -111,7 +138,7 @@ about:
   home: https://developers.google.com/optimization
   license: Apache-2.0
   license_family: Apache
-  license_file: LICENSE-2.0.txt
+  license_file: LICENSE
   summary: Google Operations Research Tools (or-tools) python package
   description: |
     OR-Tools is an open source software suite for optimization, tuned for tackling
