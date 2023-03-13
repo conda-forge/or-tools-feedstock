@@ -96,6 +96,8 @@ outputs:
         - absl-py >=0.13
         - numpy
         - mypy-protobuf
+        - protobuf >=4.21.12
+        - scipy >=1.10
         - wheel
         # C/C++ deps
         - eigen
@@ -111,11 +113,12 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
       run:
+        - python
         - absl-py >=0.13
         - mypy-protobuf
         - {{ pin_compatible('numpy') }}
-        - protobuf
-        - python
+        - protobuf >=4.21.12
+        - scipy >=1.10
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
 
     test:
