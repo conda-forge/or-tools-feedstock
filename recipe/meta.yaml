@@ -1,4 +1,4 @@
-{% set version = "9.5" %}
+{% set version = "9.6" %}
 
 package:
   name: or-tools-package
@@ -6,10 +6,7 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: 57f81b94949d35dc042690db3fa3f53245cffbf6824656e1a03f103a3623c939
-  patches:
-    # minimal fix for https://github.com/google/or-tools/issues/3698
-    - patches/0001-ensure-we-re-using-the-right-abseil-macro.patch
+  sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
 
 # The meta package
 
@@ -99,6 +96,8 @@ outputs:
         - absl-py >=0.13
         - numpy
         - mypy-protobuf
+        - protobuf >=4.21.12
+        - scipy >=1.10
         - wheel
         # C/C++ deps
         - eigen
@@ -114,11 +113,12 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
       run:
+        - python
         - absl-py >=0.13
         - mypy-protobuf
         - {{ pin_compatible('numpy') }}
-        - protobuf
-        - python
+        - protobuf >=4.21.12
+        - scipy >=1.10
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
 
     test:
