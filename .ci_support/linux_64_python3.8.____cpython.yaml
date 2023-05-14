@@ -1,7 +1,7 @@
 c_compiler:
 - gcc
 c_compiler_version:
-- '11'
+- '12'
 cdt_name:
 - cos6
 channel_sources:
@@ -21,7 +21,7 @@ coin_or_utils:
 cxx_compiler:
 - gxx
 cxx_compiler_version:
-- '11'
+- '12'
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 libabseil:
@@ -29,7 +29,7 @@ libabseil:
 libprotobuf:
 - '3.21'
 numpy:
-- '1.20'
+- '1.21'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -37,7 +37,7 @@ pin_run_as_build:
 python:
 - 3.8.* *_cpython
 re2:
-- 2023.02.02
+- 2023.03.02
 target_platform:
 - linux-64
 zip_keys:
