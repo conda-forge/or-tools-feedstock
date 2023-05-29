@@ -1,5 +1,9 @@
 {% set version = "9.6" %}
 
+{% set libs = ["ortools", "ortools_flatzinc"] %}
+# many, many more headers; this just covers one from main namespace and a nested one
+{% set headers = ["ortools_export.h", "ortools/algorithms/dense_doubly_linked_list.h"] %}
+
 package:
   name: or-tools-package
   version: {{ version }}
@@ -53,11 +57,23 @@ outputs:
 
     test:
       commands:
-        - test -f $PREFIX/lib/libortools${SHLIB_EXT}
+        # libraries
+        {% for each_lib in libs %}
+        # presence of shared libs
+        - test -f $PREFIX/lib/lib{{ each_lib }}.so              # [linux]
+
+        # absence of static libs (unix)
+        - test ! -f $PREFIX/lib/lib{{ each_lib }}.a             # [unix]
+        {% endfor %}
+
+        # presence of headers
+        {% for each_header in headers %}
+        - test -f $PREFIX/include/{{ each_header }} || (echo "{{ each_header }} not found" && exit 1)  # [unix]
+        {% endfor %}
+
+        # CMake metadata
         - test -f $PREFIX/lib/cmake/ortools/ortoolsTargets.cmake
         - test -f $PREFIX/lib/cmake/ortools/ortoolsConfig.cmake
-        - test -f $PREFIX/include/ortools_export.h
-        - test -f $PREFIX/include/ortools/algorithms/dense_doubly_linked_list.h
 
   # for compatibility with previous output "ortools-cpp"
   - name: ortools-cpp
