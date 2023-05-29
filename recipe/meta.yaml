@@ -3,6 +3,7 @@
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
 {% set headers = ["ortools_export.h", "ortools/algorithms/dense_doubly_linked_list.h"] %}
+{% set binaries = ["fzn-ortools", "sat_runner", "solve"] %}
 
 package:
   name: or-tools-package
@@ -15,13 +16,34 @@ source:
 # The meta package
 
 build:
-  number: 1
+  number: 2
   skip: true  # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+    - pkg-config
+  host:
+    # eigen does not have a run-export but is header-only
+    - eigen
+    - libabseil
+    - libprotobuf
+    - re2
+    - zlib
+    # coin or deps
+    - coin-or-utils
+    - coin-or-osi
+    - coin-or-clp
+    - coin-or-cgl
+    - coin-or-cbc
 
 outputs:
   # The core package
   - name: libortools
-    script: build-cpp.sh
+    script: install-cpp.sh
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
@@ -29,19 +51,16 @@ outputs:
         - python
     requirements:
       build:
+        - cmake
+        # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - cmake >=3.18
-        - ninja
-        - pkg-config
       host:
-        # eigen does not have a run-export but is header-only
-        - eigen
+        # these are only here for proper run-exports
         - libabseil
         - libprotobuf
         - re2
         - zlib
-        # coin or deps
         - coin-or-utils
         - coin-or-osi
         - coin-or-clp
@@ -71,24 +90,46 @@ outputs:
         - test -f $PREFIX/include/{{ each_header }} || (echo "{{ each_header }} not found" && exit 1)  # [unix]
         {% endfor %}
 
+        # absence of binaries
+        {% for each_bin in binaries %}
+        - test ! -f $PREFIX/bin/{{ each_bin }}                  # [unix]
+        {% endfor %}
+
         # CMake metadata
         - test -f $PREFIX/lib/cmake/ortools/ortoolsTargets.cmake
         - test -f $PREFIX/lib/cmake/ortools/ortoolsConfig.cmake
 
-  # for compatibility with previous output "ortools-cpp"
+  # originally for compatibility with previous output nomenclature,
+  # now used for binaries, c.f. thrift-cpp feedstock, resp.
+  # https://github.com/conda-forge/conda-forge.github.io/issues/1073#issuecomment-1228192146
   - name: ortools-cpp
+    script: install-cpp.sh
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
     requirements:
+      build:
+        - cmake
+        # for strong run export
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
+        # for proper run-exports
+        - libabseil
+        - libprotobuf
       run:
         - {{ pin_subpackage('libortools', exact=True) }}
     test:
       commands:
-        # tested in other outputs
-        - echo "hello"
+        # presence of binaries
+        {% for each_bin in binaries %}
+        - test -f $PREFIX/bin/{{ each_bin }}                    # [unix]
+        {% endfor %}
+
+        # share
+        - test -d $PREFIX/share/minizinc/ortools                # [unix]
+        - test -d $PREFIX/share/minizinc/solvers                # [unix]
 
       # The python package.
   - name: ortools-python
