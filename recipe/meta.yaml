@@ -12,6 +12,8 @@ package:
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
+  patches:
+    - patches/0001-depend-on-libortools-for-python-bindings.patch
 
 # The meta package
 
@@ -47,8 +49,6 @@ outputs:
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
-      ignore_run_exports_from:
-        - python
     requirements:
       build:
         - cmake
@@ -66,10 +66,6 @@ outputs:
         - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
-        # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
-        # fake python dependency to avoid conda-smithy collapsing the builds per arch;
-        # we can remove this once we manage to base the python bindings on libortools
-        - python
       run_constrained:
         # make sure we don't co-install with old version of previous package name
         - ortools-cpp ={{ version }}
@@ -134,32 +130,41 @@ outputs:
       # The python package.
   - name: ortools-python
     script: build-python.sh
-
+    build:
+      ignore_run_exports_from:
+        # those are just in host to appease the CMake build script
+        - coin-or-utils
+        - coin-or-osi
+        - coin-or-clp
+        - coin-or-cgl
+        - coin-or-cbc
+        - re2
+        - zlib
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - cmake >=3.18
-        - git
+        - cmake
         - ninja
-        - python
-        - mypy-protobuf
         - pkg-config
-        - setuptools
         - swig >=4.0
       host:
+        # find_package(ortools) wants to find the binaries as well
+        - {{ pin_subpackage('ortools-cpp', exact=True) }}
         - python
         - pip
+        - setuptools
+        - wheel
         - absl-py >=0.13
         - numpy
         - mypy-protobuf
         - protobuf >=4.21.12
         - scipy >=1.10
-        - wheel
-        # C/C++ deps
+        # match protobuf version from libortools to help solvers
+        - libprotobuf
+        # other C/C++ deps
         - eigen
         - libabseil
-        - libprotobuf
         - pybind11
         - re2
         - zlib
@@ -170,6 +175,7 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
       run:
+        - {{ pin_subpackage('libortools', exact=True) }}
         - python
         - absl-py >=0.13
         - mypy-protobuf
