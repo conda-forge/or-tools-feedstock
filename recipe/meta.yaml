@@ -28,6 +28,7 @@ requirements:
     - cmake
     - ninja
     - pkg-config
+    - libprotobuf  # [build_platform != target_platform]
   host:
     # eigen does not have a run-export but is header-only
     - eigen
@@ -165,6 +166,7 @@ outputs:
         - ninja
         - pkg-config
         - swig >=4.0
+        - libprotobuf  # [build_platform != target_platform]
       host:
         # find_package(ortools) wants to find the binaries as well
         - {{ pin_subpackage('ortools-cpp', exact=True) }}
