@@ -121,6 +121,14 @@ outputs:
       run:
         - {{ pin_subpackage('libortools', exact=True) }}
     test:
+      requires:
+        # cmake needs compiler to be able to run package detection, see
+        # https://discourse.cmake.org/t/questions-about-find-package-cli-msvc/6194
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      files:
+        - cmake_test/
       commands:
         # presence of binaries
         {% for each_bin in binaries %}
@@ -130,6 +138,11 @@ outputs:
         # share
         - test -d $PREFIX/share/minizinc/ortools                # [unix]
         - test -d $PREFIX/share/minizinc/solvers                # [unix]
+
+        # test CMake integration, i.e. find_package(ortools)
+        - cd cmake_test
+        - cmake -GNinja $CMAKE_ARGS .   # [unix]
+        - cmake -GNinja %CMAKE_ARGS% .  # [win]
 
   # The python package.
   - name: ortools-python
