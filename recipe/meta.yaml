@@ -204,7 +204,32 @@ outputs:
     test:
       imports:
         - ortools
+        - ortools.algorithms.pywrapknapsack_solver
+        - ortools.constraint_solver.pywrapcp
+        - ortools.constraint_solver.routing_enums_pb2
+        - ortools.glop.parameters_pb2
+        - ortools.graph.flow_problem_pb2
+        - ortools.graph.python
+        - ortools.init.pywrapinit
+        - ortools.linear_solver.linear_solver_pb2
+        - ortools.linear_solver.python
+        - ortools.linear_solver.python.model_builder
         - ortools.linear_solver.pywraplp
+        - ortools.packing.multiple_dimensions_bin_packing_pb2
+        - ortools.packing.vector_bin_packing_pb2
+        - ortools.pdlp.python
+        - ortools.sat.boolean_problem_pb2
+        - ortools.sat.cp_model_pb2
+        - ortools.sat.cp_model_service_pb2
+        - ortools.sat.python
+        - ortools.sat.python.cp_model
+        - ortools.sat.sat_parameters_pb2
+        - ortools.scheduling.course_scheduling_pb2
+        - ortools.scheduling.jobshop_scheduling_pb2
+        - ortools.scheduling.pywraprcpsp
+        - ortools.scheduling.rcpsp_pb2
+        - ortools.util.optional_boolean_pb2
+        - ortools.util.python
       commands:
         - pip check
         - ${PYTHON} cmake/samples/python/sample.py
