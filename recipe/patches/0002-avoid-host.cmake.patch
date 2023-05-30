@@ -1,0 +1,22 @@
+From cd542f2153cedfc45d5623875e12bcaf9681f276 Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Tue, 30 May 2023 14:18:19 +1100
+Subject: [PATCH 2/2] avoid host.cmake
+
+---
+ cmake/host.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/host.cmake b/cmake/host.cmake
+index 63e4dd300..d6aac2d02 100644
+--- a/cmake/host.cmake
++++ b/cmake/host.cmake
+@@ -11,7 +11,7 @@
+ # See the License for the specific language governing permissions and
+ # limitations under the License.
+ 
+-if(NOT CMAKE_CROSSCOMPILING)
++if(TRUE)
+   set(PROTOC_PRG protobuf::protoc)
+   return()
+ endif()
