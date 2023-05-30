@@ -127,7 +127,7 @@ outputs:
         - test -d $PREFIX/share/minizinc/ortools                # [unix]
         - test -d $PREFIX/share/minizinc/solvers                # [unix]
 
-      # The python package.
+  # The python package.
   - name: ortools-python
     script: build-python.sh
     build:
@@ -160,7 +160,7 @@ outputs:
         - mypy-protobuf
         - protobuf >=4.21.12
         - scipy >=1.10
-        # match protobuf version from libortools to help solvers
+        # match protobuf version from libortools to help solver
         - libprotobuf
         # other C/C++ deps
         - eigen

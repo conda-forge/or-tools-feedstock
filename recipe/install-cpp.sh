@@ -8,6 +8,6 @@ if [[ "$PKG_NAME" == "libortools" ]]; then
     cp -R ./temp_prefix/lib/* $PREFIX/lib
     cp -R ./temp_prefix/include/* $PREFIX/include
 else
-    # install everythin else (binaries/share ...)
+    # install everything else (binaries/share ...)
     cmake --install ./build --prefix=$PREFIX
 fi
