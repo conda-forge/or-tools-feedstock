@@ -11,10 +11,19 @@ cmake -G Ninja \
     -DCMAKE_INSTALL_LIBDIR=lib \
     -DBUILD_SHARED_LIBS=ON \
     -DBUILD_DEPS=OFF \
+    -DBUILD_FLATZINC=ON \
     -DBUILD_GLOP=OFF \
+    -DBUILD_LP_PARSER=ON \
+    -DBUILD_PDLP=ON \
     -DBUILD_EXAMPLES=OFF \
     -DBUILD_SAMPLES=OFF \
+    -DUSE_COINOR=ON \
+    -DUSE_CPLEX=OFF \
+    -DUSE_GLPK=OFF \
+    -DUSE_HIGHS=OFF \
+    -DUSE_PDLP=ON \
     -DUSE_SCIP=OFF \
+    -DUSE_XPRESS=OFF \
     ..
 
 cmake --build .

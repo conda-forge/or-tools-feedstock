@@ -66,6 +66,10 @@ outputs:
         - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
+      run:
+        # header-only without run-export, but ortoolsConfig.cmake really wants it, see
+        # https://github.com/google/or-tools/blob/v9.6/cmake/ortoolsConfig.cmake.in#L64
+        - eigen
       run_constrained:
         # make sure we don't co-install with old version of previous package name
         - ortools-cpp ={{ version }}
