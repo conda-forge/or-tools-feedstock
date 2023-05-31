@@ -1,8 +1,8 @@
 #!/bin/sh
 set -ex
 
-mkdir build
-cd build
+mkdir build-cpp
+cd build-cpp
 
 if [[ "${target_platform}" != "${build_platform}" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc"
