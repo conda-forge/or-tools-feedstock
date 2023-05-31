@@ -3,7 +3,7 @@ c_compiler:
 c_compiler_version:
 - '12'
 cdt_name:
-- cos7
+- cos6
 channel_sources:
 - conda-forge
 channel_targets:
@@ -23,12 +23,15 @@ cxx_compiler:
 cxx_compiler_version:
 - '12'
 docker_image:
-- quay.io/condaforge/linux-anvil-ppc64le
+- quay.io/condaforge/linux-anvil-cos7-x86_64
 libabseil:
 - '20230125'
 libprotobuf:
 - '3.21'
 numpy:
+- '1.21'
+- '1.23'
+- '1.21'
 - '1.21'
 pin_run_as_build:
   python:
@@ -36,10 +39,13 @@ pin_run_as_build:
     max_pin: x.x
 python:
 - 3.10.* *_cpython
+- 3.11.* *_cpython
+- 3.8.* *_cpython
+- 3.9.* *_cpython
 re2:
 - 2023.03.02
 target_platform:
-- linux-ppc64le
+- linux-64
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version

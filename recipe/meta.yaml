@@ -1,5 +1,10 @@
 {% set version = "9.6" %}
 
+{% set libs = ["ortools", "ortools_flatzinc"] %}
+# many, many more headers; this just covers one from main namespace and a nested one
+{% set headers = ["ortools_export.h", "ortools/algorithms/dense_doubly_linked_list.h"] %}
+{% set binaries = ["fzn-ortools", "sat_runner", "solve"] %}
+
 package:
   name: or-tools-package
   version: {{ version }}
@@ -7,102 +12,176 @@ package:
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
+  patches:
+    - patches/0001-depend-on-libortools-for-python-bindings.patch
 
 # The meta package
 
 build:
-  number: 1
+  number: 2
   skip: true  # [not linux]
+
+requirements:
+  build:
+    - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
+    - cmake
+    - ninja
+    - pkg-config
+  host:
+    # eigen does not have a run-export but is header-only
+    - eigen
+    - libabseil
+    - libprotobuf
+    - re2
+    - zlib
+    # coin or deps
+    - coin-or-utils
+    - coin-or-osi
+    - coin-or-clp
+    - coin-or-cgl
+    - coin-or-cbc
 
 outputs:
   # The core package
   - name: libortools
-    script: build-cpp.sh
+    script: install-cpp.sh
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
-      ignore_run_exports_from:
-        - python
     requirements:
       build:
+        - cmake
+        # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - cmake >=3.18
-        - ninja
-        - pkg-config
       host:
-        # eigen does not have a run-export but is header-only
-        - eigen
+        # these are only here for proper run-exports
         - libabseil
         - libprotobuf
         - re2
         - zlib
-        # coin or deps
         - coin-or-utils
         - coin-or-osi
         - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
-        # Source: https://github.com/google/or-tools/blob/stable/cmake/dependencies/CMakeLists.txt
-        # fake python dependency to avoid conda-smithy collapsing the builds per arch;
-        # we can remove this once we manage to base the python bindings on libortools
-        - python
+      run:
+        # header-only without run-export, but ortoolsConfig.cmake really wants it, see
+        # https://github.com/google/or-tools/blob/v9.6/cmake/ortoolsConfig.cmake.in#L64
+        - eigen
       run_constrained:
         # make sure we don't co-install with old version of previous package name
         - ortools-cpp ={{ version }}
 
     test:
       commands:
-        - test -f $PREFIX/lib/libortools${SHLIB_EXT}
+        # libraries
+        {% for each_lib in libs %}
+        # presence of shared libs
+        - test -f $PREFIX/lib/lib{{ each_lib }}.so              # [linux]
+
+        # absence of static libs (unix)
+        - test ! -f $PREFIX/lib/lib{{ each_lib }}.a             # [unix]
+        {% endfor %}
+
+        # presence of headers
+        {% for each_header in headers %}
+        - test -f $PREFIX/include/{{ each_header }} || (echo "{{ each_header }} not found" && exit 1)  # [unix]
+        {% endfor %}
+
+        # absence of binaries
+        {% for each_bin in binaries %}
+        - test ! -f $PREFIX/bin/{{ each_bin }}                  # [unix]
+        {% endfor %}
+
+        # CMake metadata
         - test -f $PREFIX/lib/cmake/ortools/ortoolsTargets.cmake
         - test -f $PREFIX/lib/cmake/ortools/ortoolsConfig.cmake
-        - test -f $PREFIX/include/ortools_export.h
-        - test -f $PREFIX/include/ortools/algorithms/dense_doubly_linked_list.h
 
-  # for compatibility with previous output "ortools-cpp"
+  # originally for compatibility with previous output nomenclature,
+  # now used for binaries, c.f. thrift-cpp feedstock, resp.
+  # https://github.com/conda-forge/conda-forge.github.io/issues/1073#issuecomment-1228192146
   - name: ortools-cpp
+    script: install-cpp.sh
     build:
       run_exports:
         - {{ pin_subpackage('libortools', max_pin='x.x') }}
     requirements:
+      build:
+        - cmake
+        # for strong run export
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
+        # for proper run-exports
+        - libabseil
+        - libprotobuf
       run:
         - {{ pin_subpackage('libortools', exact=True) }}
     test:
+      requires:
+        # cmake needs compiler to be able to run package detection, see
+        # https://discourse.cmake.org/t/questions-about-find-package-cli-msvc/6194
+        - {{ compiler('cxx') }}
+        - cmake
+        - ninja
+      files:
+        - cmake_test/
       commands:
-        # tested in other outputs
-        - echo "hello"
+        # presence of binaries
+        {% for each_bin in binaries %}
+        - test -f $PREFIX/bin/{{ each_bin }}                    # [unix]
+        {% endfor %}
 
-      # The python package.
+        # share
+        - test -d $PREFIX/share/minizinc/ortools                # [unix]
+        - test -d $PREFIX/share/minizinc/solvers                # [unix]
+
+        # test CMake integration, i.e. find_package(ortools)
+        - cd cmake_test
+        - cmake -GNinja $CMAKE_ARGS .   # [unix]
+        - cmake -GNinja %CMAKE_ARGS% .  # [win]
+
+  # The python package.
   - name: ortools-python
     script: build-python.sh
-
+    build:
+      ignore_run_exports_from:
+        # those are just in host to appease the CMake build script
+        - coin-or-utils
+        - coin-or-osi
+        - coin-or-clp
+        - coin-or-cgl
+        - coin-or-cbc
+        - re2
+        - zlib
     requirements:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
-        - cmake >=3.18
-        - git
+        - cmake
         - ninja
-        - python
-        - mypy-protobuf
         - pkg-config
-        - setuptools
         - swig >=4.0
       host:
+        # find_package(ortools) wants to find the binaries as well
+        - {{ pin_subpackage('ortools-cpp', exact=True) }}
         - python
         - pip
+        - setuptools
+        - wheel
         - absl-py >=0.13
         - numpy
         - mypy-protobuf
         - protobuf >=4.21.12
         - scipy >=1.10
-        - wheel
-        # C/C++ deps
+        # match protobuf version from libortools to help solver
+        - libprotobuf
+        # other C/C++ deps
         - eigen
         - libabseil
-        - libprotobuf
         - pybind11
         - re2
         - zlib
@@ -113,6 +192,7 @@ outputs:
         - coin-or-cgl
         - coin-or-cbc
       run:
+        - {{ pin_subpackage('libortools', exact=True) }}
         - python
         - absl-py >=0.13
         - mypy-protobuf
@@ -124,7 +204,32 @@ outputs:
     test:
       imports:
         - ortools
+        - ortools.algorithms.pywrapknapsack_solver
+        - ortools.constraint_solver.pywrapcp
+        - ortools.constraint_solver.routing_enums_pb2
+        - ortools.glop.parameters_pb2
+        - ortools.graph.flow_problem_pb2
+        - ortools.graph.python
+        - ortools.init.pywrapinit
+        - ortools.linear_solver.linear_solver_pb2
+        - ortools.linear_solver.python
+        - ortools.linear_solver.python.model_builder
         - ortools.linear_solver.pywraplp
+        - ortools.packing.multiple_dimensions_bin_packing_pb2
+        - ortools.packing.vector_bin_packing_pb2
+        - ortools.pdlp.python
+        - ortools.sat.boolean_problem_pb2
+        - ortools.sat.cp_model_pb2
+        - ortools.sat.cp_model_service_pb2
+        - ortools.sat.python
+        - ortools.sat.python.cp_model
+        - ortools.sat.sat_parameters_pb2
+        - ortools.scheduling.course_scheduling_pb2
+        - ortools.scheduling.jobshop_scheduling_pb2
+        - ortools.scheduling.pywraprcpsp
+        - ortools.scheduling.rcpsp_pb2
+        - ortools.util.optional_boolean_pb2
+        - ortools.util.python
       commands:
         - pip check
         - ${PYTHON} cmake/samples/python/sample.py
