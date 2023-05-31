@@ -8,6 +8,13 @@ if [[ "${target_platform}" != "${build_platform}" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc"
 fi
 
+if [[ "${target_platform}" == "linux-64" ]]; then
+    # https://github.com/conda-forge/scipoptsuite-feedstock not built for aarch/ppc yet
+    CMAKE_ARGS="${CMAKE_ARGS} -DUSE_SCIP=ON"
+else
+    CMAKE_ARGS="${CMAKE_ARGS} -DUSE_SCIP=OFF"
+fi
+
 cmake -G Ninja \
     ${CMAKE_ARGS} \
     -DCMAKE_BUILD_TYPE=Release \
@@ -26,7 +33,6 @@ cmake -G Ninja \
     -DUSE_GLPK=OFF \
     -DUSE_HIGHS=OFF \
     -DUSE_PDLP=ON \
-    -DUSE_SCIP=ON \
     -DUSE_XPRESS=OFF \
     ..
 

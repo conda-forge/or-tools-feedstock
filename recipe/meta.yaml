@@ -37,7 +37,8 @@ requirements:
     - libabseil
     - libprotobuf
     - re2
-    - scip
+    # not available on aarch/ppc yet
+    - scip  # [not (aarch64 or ppc64le)]
     - zlib
     # coin or deps
     - coin-or-utils
@@ -64,7 +65,7 @@ outputs:
         - libabseil
         - libprotobuf
         - re2
-        - scip
+        - scip  # [not (aarch64 or ppc64le)]
         - zlib
         - coin-or-utils
         - coin-or-osi
@@ -171,7 +172,7 @@ outputs:
     test:
       commands:
         # run sample program for scip integration
-        - $CONDA_PREFIX/bin/simple_mip_program
+        - $CONDA_PREFIX/bin/simple_mip_program  # [not (aarch64 or ppc64le)]
 
   # The python package.
   - name: ortools-python
