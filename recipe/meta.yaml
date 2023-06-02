@@ -265,6 +265,8 @@ outputs:
         - pip check
         - ${PYTHON} cmake/samples/python/sample.py
         - ${PYTHON} ortools/sat/samples/assignment_sat.py
+        # check that scip is loadable
+        - python -c "from ortools.linear_solver import pywraplp; pywraplp.Solver.CreateSolver('SCIP')"  # [not (aarch64 or ppc64le)]
       requires:
         - pip
       source_files:
