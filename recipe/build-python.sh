@@ -1,10 +1,11 @@
 #!/bin/sh
 set -ex
 
-# clean up remnants from cpp build phase
-rm -rf build
-mkdir build
-cd build
+# do not use the same folder as global build.sh,
+# but delete it from any previous python builds
+rm -rf build-py || true
+mkdir build-py
+cd build-py
 
 if [[ "${target_platform}" != "${build_platform}" ]]; then
     CMAKE_ARGS="${CMAKE_ARGS} -DProtobuf_PROTOC_EXECUTABLE=$BUILD_PREFIX/bin/protoc"
@@ -27,7 +28,6 @@ cmake -G Ninja \
     -DFETCH_PYTHON_DEPS=OFF \
     -DBUILD_pybind11=OFF \
     -DPython3_EXECUTABLE="$PYTHON" \
-    -DUSE_SCIP=OFF \
     ..
 
 cmake --build . -j${CPU_COUNT}
@@ -35,4 +35,4 @@ cd ..
 
 echo Install begins here
 
-${PYTHON} -m pip install --no-index --find-links=build/python/dist ortools -vv
+${PYTHON} -m pip install --no-index --find-links=build-py/python/dist ortools -vv

@@ -13,8 +13,9 @@ source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
   sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
   patches:
-    - patches/0001-depend-on-libortools-for-python-bindings.patch
-    - patches/0002-avoid-host.cmake.patch
+    - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
+    - patches/0002-depend-on-libortools-for-python-bindings.patch
+    - patches/0003-avoid-host.cmake.patch
 
 # The meta package
 
@@ -36,6 +37,8 @@ requirements:
     - libabseil
     - libprotobuf
     - re2
+    # not available on aarch/ppc yet
+    - scip  # [not (aarch64 or ppc64le)]
     - zlib
     # coin or deps
     - coin-or-utils
@@ -62,6 +65,7 @@ outputs:
         - libabseil
         - libprotobuf
         - re2
+        - scip  # [not (aarch64 or ppc64le)]
         - zlib
         - coin-or-utils
         - coin-or-osi
@@ -145,6 +149,30 @@ outputs:
         - cd cmake_test
         - cmake -GNinja $CMAKE_ARGS .   # [unix]
         - cmake -GNinja %CMAKE_ARGS% .  # [win]
+
+  # this package exists primarily to be able to test scip integration without
+  # polluting the other outputs (and $CONDA_PREFIX/bin) with useless sample binaries
+  - name: ortools-samples
+    script: install-cpp.sh
+    requirements:
+      build:
+        - cmake
+        # for strong run export
+        - {{ compiler('c') }}
+        - {{ compiler('cxx') }}
+      host:
+        - {{ pin_subpackage('ortools-cpp', exact=True) }}
+        - libabseil
+        - libprotobuf
+      run:
+        - {{ pin_subpackage('ortools-cpp', exact=True) }}
+        # it seems that conda-build does not correctly apply run-exports
+        # for dependencies added through `pin_subpackage`...
+        - {{ pin_subpackage('libortools', max_pin='x.x') }}
+    test:
+      commands:
+        # run sample program for scip integration
+        - $CONDA_PREFIX/bin/simple_mip_program  # [not (aarch64 or ppc64le)]
 
   # The python package.
   - name: ortools-python
