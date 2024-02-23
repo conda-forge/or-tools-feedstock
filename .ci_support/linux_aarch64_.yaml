@@ -29,14 +29,14 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-cos7-x86_64
 libabseil:
-- '20230125'
+- '20240116'
 libprotobuf:
-- '3.21'
+- 4.25.2
 numpy:
-- '1.21'
+- '1.22'
 - '1.23'
-- '1.21'
-- '1.21'
+- '1.22'
+- '1.22'
 pin_run_as_build:
   python:
     min_pin: x.x
@@ -47,7 +47,7 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 re2:
-- 2023.03.02
+- 2023.06.02
 target_platform:
 - linux-aarch64
 zip_keys:
