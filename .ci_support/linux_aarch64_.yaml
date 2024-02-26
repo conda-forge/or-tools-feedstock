@@ -31,7 +31,7 @@ docker_image:
 libabseil:
 - '20230802'
 libprotobuf:
-- 4.23.4
+- 4.24.4
 numpy:
 - '1.22'
 - '1.23'
@@ -47,7 +47,7 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 re2:
-- 2023.06.02
+- 2023.09.01
 target_platform:
 - linux-aarch64
 zip_keys:
