@@ -3,7 +3,7 @@
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
 {% set headers = ["ortools_export.h", "ortools/algorithms/dense_doubly_linked_list.h"] %}
-{% set binaries = ["fzn-ortools", "sat_runner", "solve"] %}
+{% set binaries = ["fzn-cp-sat", "sat_runner", "solve"] %}
 
 package:
   name: or-tools-package
