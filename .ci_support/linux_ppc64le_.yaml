@@ -2,6 +2,10 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '12'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
 cdt_name:
 - cos7
 channel_sources:
@@ -27,7 +31,7 @@ docker_image:
 libabseil:
 - '20230802'
 libprotobuf:
-- 4.23.4
+- 4.25.1
 numpy:
 - '1.22'
 - '1.23'
@@ -45,12 +49,14 @@ python:
 - 3.8.* *_cpython
 - 3.9.* *_cpython
 re2:
-- 2023.03.02
+- 2023.09.01
 target_platform:
 - linux-ppc64le
 zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
+- - c_stdlib_version
+  - cdt_name
 - - python
   - numpy
 zlib:
