@@ -16,12 +16,13 @@ source:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
     - patches/0002-depend-on-libortools-for-python-bindings.patch
     - patches/0003-avoid-host.cmake.patch
+    - patches/0004-look-for-clp-properly.patch
 
 # The meta package
 
 build:
   number: 3
-  skip: true  # [not linux]
+  skip: true  # [win]
 
 requirements:
   build:
