@@ -25,6 +25,7 @@ build:
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
@@ -58,6 +59,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -117,6 +119,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -158,6 +161,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -189,6 +193,7 @@ outputs:
         - zlib
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake
