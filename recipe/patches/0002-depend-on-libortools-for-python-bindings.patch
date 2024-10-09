@@ -1,7 +1,7 @@
 From 46f6448b743b3c8c5be974e40d7f2144e20622cd Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Tue, 30 May 2023 10:01:50 +1100
-Subject: [PATCH 2/3] depend on libortools for python bindings
+Subject: [PATCH 2/4] depend on libortools for python bindings
 
 ---
  cmake/python.cmake         | 11 +++--------
