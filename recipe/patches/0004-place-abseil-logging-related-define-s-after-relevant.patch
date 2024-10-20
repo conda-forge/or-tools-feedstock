@@ -1,0 +1,36 @@
+From 284ef59879b60fd27c1fe4123020595ec081ed09 Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Wed, 9 Oct 2024 22:01:49 +1100
+Subject: [PATCH 4/4] place abseil-logging related `#define`s after relevant
+ `#include`s
+
+---
+ ortools/base/logging.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/ortools/base/logging.h b/ortools/base/logging.h
+index 1a0106db7..a75782fe6 100644
+--- a/ortools/base/logging.h
++++ b/ortools/base/logging.h
+@@ -14,10 +14,6 @@
+ #ifndef OR_TOOLS_BASE_LOGGING_H_
+ #define OR_TOOLS_BASE_LOGGING_H_
+ 
+-#define ABSL_LOG_INTERNAL_CONDITION_DFATAL ABSL_LOG_INTERNAL_CONDITION_ERROR
+-#define kLogDebugFatal LogSeverity::kError
+-#define kDebugFatal kError
+-
+ #include "absl/base/log_severity.h"
+ #include "absl/flags/declare.h"
+ #include "absl/log/check.h"
+@@ -30,6 +26,10 @@
+ #include "ortools/base/macros.h"
+ #include "ortools/base/vlog.h"
+ 
++#define ABSL_LOG_INTERNAL_CONDITION_DFATAL ABSL_LOG_INTERNAL_CONDITION_ERROR
++#define kLogDebugFatal LogSeverity::kError
++#define kDebugFatal kError
++
+ // Compatibility layer for glog/previous logging code.
+ ABSL_DECLARE_FLAG(bool, logtostderr);
+ 

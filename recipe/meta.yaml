@@ -1,4 +1,4 @@
-{% set version = "9.6" %}
+{% set version = "9.7" %}
 
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
@@ -11,20 +11,22 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
+  sha256: 054d9517fc6c83f15150c93ef1c2c674ffd7d4a0d1fdc78f6ef8bc3e25c2e339
   patches:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
     - patches/0002-depend-on-libortools-for-python-bindings.patch
     - patches/0003-avoid-host.cmake.patch
+    - patches/0004-place-abseil-logging-related-define-s-after-relevant.patch
 
 # The meta package
 
 build:
-  number: 3
+  number: 0
   skip: true  # [not linux]
 
 requirements:
   build:
+    - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - cmake
@@ -58,6 +60,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -117,6 +120,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -158,6 +162,7 @@ outputs:
       build:
         - cmake
         # for strong run export
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
       host:
@@ -189,6 +194,7 @@ outputs:
         - zlib
     requirements:
       build:
+        - {{ stdlib('c') }}
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
         - cmake
@@ -207,7 +213,6 @@ outputs:
         - numpy
         - mypy-protobuf
         - protobuf >=4.21.12
-        - scipy >=1.10
         # match protobuf version from libortools to help solver
         - libprotobuf
         # other C/C++ deps
@@ -269,6 +274,7 @@ outputs:
         - python -c "from ortools.linear_solver import pywraplp; pywraplp.Solver.CreateSolver('SCIP')"  # [not (aarch64 or ppc64le)]
       requires:
         - pip
+        - scipy
       source_files:
         - cmake/samples/python/sample.py
         - ortools/sat/samples/assignment_sat.py
