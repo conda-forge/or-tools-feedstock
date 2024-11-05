@@ -1,4 +1,4 @@
-{% set version = "9.6" %}
+{% set version = "9.10" %}
 
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
+  sha256: e7c27a832f3595d4ae1d7e53edae595d0347db55c82c309c8f24227e675fd378
   patches:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
     - patches/0002-depend-on-libortools-for-python-bindings.patch
@@ -20,12 +20,13 @@ source:
 # The meta package
 
 build:
-  number: 3
+  number: 0
   skip: true  # [not linux]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake
     - ninja
@@ -59,6 +60,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         # these are only here for proper run-exports
@@ -118,6 +120,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
@@ -159,6 +162,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('ortools-cpp', exact=True) }}
@@ -190,6 +194,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
