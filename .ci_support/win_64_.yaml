@@ -17,7 +17,7 @@ coin_or_utils:
 cxx_compiler:
 - vs2022
 libabseil:
-- '20250127'
+- '20250814'
 libprotobuf:
 - 5.29.3
 numpy:

@@ -26,6 +26,7 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - cmake
     - ninja
     - pkg-config
@@ -59,6 +60,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         # these are only here for proper run-exports
         - libabseil
@@ -118,6 +120,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
         # for proper run-exports
@@ -159,6 +162,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         - {{ pin_subpackage('ortools-cpp', exact=True) }}
         - libabseil
@@ -190,6 +194,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - pkg-config
