@@ -1,4 +1,4 @@
-{% set version = "9.6" %}
+{% set version = "9.14" %}
 
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
@@ -10,8 +10,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
+  url: https://github.com/google/or-tools/releases/download/v{{ version }}/ot-tools-{{ version }}.tar.gz
+  sha256: sha256:6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
   patches:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
     - patches/0002-depend-on-libortools-for-python-bindings.patch
