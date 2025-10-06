@@ -12,10 +12,6 @@ package:
 source:
   url: https://github.com/google/or-tools/releases/download/v{{ version }}/or-tools-{{ version }}.tar.gz
   sha256: 6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
-  patches:
-    - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
-    - patches/0002-depend-on-libortools-for-python-bindings.patch
-    - patches/0003-avoid-host.cmake.patch
 
 # The meta package
 
