@@ -2,6 +2,10 @@ c_compiler:
 - gcc
 c_compiler_version:
 - '14'
+c_stdlib:
+- sysroot
+c_stdlib_version:
+- '2.17'
 channel_sources:
 - conda-forge
 channel_targets:
@@ -23,9 +27,9 @@ cxx_compiler_version:
 docker_image:
 - quay.io/condaforge/linux-anvil-x86_64:alma9
 libabseil:
-- '20250814'
+- '20250127'
 libprotobuf:
-- 6.32.1
+- 5.29.3
 numpy:
 - '2'
 pin_run_as_build:
