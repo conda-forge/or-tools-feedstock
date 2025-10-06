@@ -20,8 +20,7 @@ source:
 # The meta package
 
 build:
-  number: 3
-  skip: true  # [not linux]
+  number: 0
 
 requirements:
   build:
