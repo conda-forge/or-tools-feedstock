@@ -10,7 +10,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google/or-tools/releases/download/v{{ version }}/ot-tools-{{ version }}.tar.gz
+  url: https://github.com/google/or-tools/releases/download/v{{ version }}/or-tools-{{ version }}.tar.gz
   sha256: sha256:6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
   patches:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
@@ -21,6 +21,7 @@ source:
 
 build:
   number: 0
+  skip: true  # [not (linux or amd64)]
 
 requirements:
   build:
