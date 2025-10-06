@@ -1,7 +1,7 @@
 About or-tools-feedstock
 ========================
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/or-tools-feedstock/blob/main/LICENSE.txt)
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/or-tools-feedstock.git-feedstock/blob/main/LICENSE.txt)
 
 Home: https://developers.google.com/optimization
 
@@ -32,8 +32,8 @@ Current build status
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main">
           </a>
         </summary>
         <table>
@@ -41,22 +41,36 @@ Current build status
           <tbody><tr>
               <td>linux_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_aarch64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
               <td>linux_ppc64le</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>osx_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>win_64</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=None&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock.git-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -75,6 +89,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libortools-green.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--cpp-green.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--python-green.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--samples-green.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) |
 
 Installing or-tools
 ===================
@@ -86,16 +101,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libortools, ortools-cpp, ortools-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libortools, ortools-cpp, ortools-python, ortools-samples` can be installed with `conda`:
 
 ```
-conda install libortools ortools-cpp ortools-python
+conda install libortools ortools-cpp ortools-python ortools-samples
 ```
 
 or with `mamba`:
 
 ```
-mamba install libortools ortools-cpp ortools-python
+mamba install libortools ortools-cpp ortools-python ortools-samples
 ```
 
 It is possible to list all of the versions of `libortools` available on your platform with `conda`:
@@ -142,15 +157,15 @@ available continuous integration services. Thanks to the awesome service provide
 [CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
 [Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
 it is possible to build and upload installable packages to the
-[conda-forge](https://anaconda.org/conda-forge) [Anaconda-Cloud](https://anaconda.org/)
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
 channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -177,7 +192,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/or-tools-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
