@@ -11,7 +11,7 @@ package:
 
 source:
   url: https://github.com/google/or-tools/releases/download/v{{ version }}/or-tools-{{ version }}.tar.gz
-  sha256: sha256:6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
+  sha256: 6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
   patches:
     - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
     - patches/0002-depend-on-libortools-for-python-bindings.patch
@@ -21,7 +21,7 @@ source:
 
 build:
   number: 0
-  skip: true  # [not (linux or amd64)]
+  skip: true  # [not linux or aarch64 or ppc64le]
 
 requirements:
   build:
@@ -37,7 +37,7 @@ requirements:
     - eigen
     - libabseil
     - libprotobuf
-    - re2
+    - re2 ==2025.06.26
     # not available on aarch/ppc yet
     - scip  # [not (aarch64 or ppc64le)]
     - zlib
@@ -66,7 +66,7 @@ outputs:
         # these are only here for proper run-exports
         - libabseil
         - libprotobuf
-        - re2
+        - re2 ==2025.06.26
         - scip  # [not (aarch64 or ppc64le)]
         - zlib
         - coin-or-utils
@@ -189,7 +189,7 @@ outputs:
         - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
-        - re2
+        - re2 ==2025.06.26
         - zlib
     requirements:
       build:
@@ -219,7 +219,7 @@ outputs:
         - eigen
         - libabseil
         - pybind11
-        - re2
+        - re2 ==2025.06.26
         - zlib
         # coin or deps
         - coin-or-utils
