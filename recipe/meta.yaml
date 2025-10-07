@@ -23,16 +23,23 @@ requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
-    - {{ stdlib("c") }}
-    - gtest
     - cmake
     - ninja
     - pkg-config
-    - libprotobuf  # [build_platform != target_platform]
-    - benchmark
+    - protobuf  # [build_platform != target_platform]
   host:
+    - {{ stdlib("c") }}
+    - gtest
+    - benchmark
+    - pybind11
+    # missing packages in conda:
+    # - pybind11-abseil
+    # - pybind11-protobuf
+    # - fuzztest  # work-around was to pass USE_fuzztest=OFF in build.sh
+    - numpy
     # eigen does not have a run-export but is header-only
     - eigen
+    - abseil-cpp
     - libabseil
     - libprotobuf
     - re2 ==2025.06.26
