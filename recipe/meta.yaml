@@ -36,11 +36,11 @@ requirements:
     # - pybind11-abseil
     # - pybind11-protobuf
     # - fuzztest  # work-around was to pass USE_fuzztest=OFF in build.sh
-    - numpy
+    - numpy {{ numpy }}
     # eigen does not have a run-export but is header-only
     - eigen
-    - abseil-cpp
-    - libabseil
+    - abseil-cpp ==20250127.1
+    - libabseil ==20250127.1
     - libprotobuf
     - re2 ==2025.06.26
     # not available on aarch/ppc yet
@@ -52,7 +52,6 @@ requirements:
     - coin-or-clp
     - coin-or-cgl
     - coin-or-cbc
-
 outputs:
   # The core package
   - name: libortools
@@ -213,11 +212,11 @@ outputs:
         - pip
         - setuptools
         - wheel
-        - absl-py >=0.13
+        - absl-py
         - numpy
         - mypy-protobuf
-        - protobuf >=4.21.12
-        - scipy >=1.10
+        - protobuf
+        - scipy
         # match protobuf version from libortools to help solver
         - libprotobuf
         # other C/C++ deps
@@ -235,13 +234,12 @@ outputs:
       run:
         - {{ pin_subpackage('libortools', exact=True) }}
         - python
-        - absl-py >=0.13
-        - mypy-protobuf
         - {{ pin_compatible('numpy') }}
-        - protobuf >=4.21.12
-        - scipy >=1.10
-        # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
-
+        - absl-py
+        - pandas
+        - protobuf
+        - typing_extensions
+        - immutabledict
     test:
       imports:
         - ortools
