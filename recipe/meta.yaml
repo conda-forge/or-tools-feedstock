@@ -39,8 +39,7 @@ requirements:
     - numpy {{ numpy }}
     # eigen does not have a run-export but is header-only
     - eigen
-    - abseil-cpp ==20250127.1
-    - libabseil ==20250127.1
+    - libabseil
     - libprotobuf
     - re2 ==2025.06.26
     # not available on aarch/ppc yet
