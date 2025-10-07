@@ -29,6 +29,7 @@ requirements:
     - ninja
     - pkg-config
     - libprotobuf  # [build_platform != target_platform]
+    - benchmark
   host:
     # eigen does not have a run-export but is header-only
     - eigen
