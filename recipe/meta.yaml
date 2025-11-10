@@ -41,7 +41,7 @@ requirements:
     - eigen
     - libabseil
     - libprotobuf
-    - re2 ==2025.06.26
+    - re2
     # not available on aarch/ppc yet
     - scip  # [not (aarch64 or ppc64le)]
     - zlib
@@ -69,7 +69,7 @@ outputs:
         # these are only here for proper run-exports
         - libabseil
         - libprotobuf
-        - re2 ==2025.06.26
+        - re2
         - scip  # [not (aarch64 or ppc64le)]
         - zlib
         - coin-or-utils
@@ -192,7 +192,7 @@ outputs:
         - coin-or-clp
         - coin-or-cgl
         - coin-or-cbc
-        - re2 ==2025.06.26
+        - re2
         - zlib
     requirements:
       build:
@@ -222,7 +222,7 @@ outputs:
         - eigen
         - libabseil
         - pybind11
-        - re2 ==2025.06.26
+        - re2
         - zlib
         # coin or deps
         - coin-or-utils
