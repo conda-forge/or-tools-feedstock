@@ -1,0 +1,4 @@
+numpy: [2]
+c_compiler: [gcc]
+cxx_compiler: [gxx]
+target_platform: [linux-64]

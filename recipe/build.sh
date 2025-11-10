@@ -34,6 +34,8 @@ cmake -G Ninja \
     -DUSE_HIGHS=OFF \
     -DUSE_PDLP=ON \
     -DUSE_XPRESS=OFF \
+    # remove that when conda gets fuzztest (add it to meta.yaml)
+    -DUSE_fuzztest=OFF \
     ..
 
 cmake --build .
