@@ -39,24 +39,45 @@ Current build status
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>linux_64_libprotobuf3.21</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_libprotobuf3.21" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_aarch64</td>
+              <td>linux_64_libprotobuf4.23.3</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_64_libprotobuf4.23.3" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>linux_ppc64le</td>
+              <td>linux_aarch64_libprotobuf3.21</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_libprotobuf3.21" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_aarch64_libprotobuf4.23.3</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_aarch64_libprotobuf4.23.3" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_libprotobuf3.21</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_libprotobuf3.21" alt="variant">
+                </a>
+              </td>
+            </tr><tr>
+              <td>linux_ppc64le_libprotobuf4.23.3</td>
+              <td>
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=14287&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/or-tools-feedstock?branchName=main&jobName=linux&configuration=linux%20linux_ppc64le_libprotobuf4.23.3" alt="variant">
                 </a>
               </td>
             </tr>
@@ -75,6 +96,7 @@ Current release info
 | [![Conda Recipe](https://img.shields.io/badge/recipe-libortools-green.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/libortools.svg)](https://anaconda.org/conda-forge/libortools) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--cpp-green.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-cpp.svg)](https://anaconda.org/conda-forge/ortools-cpp) |
 | [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--python-green.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-python.svg)](https://anaconda.org/conda-forge/ortools-python) |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-ortools--samples-green.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/ortools-samples.svg)](https://anaconda.org/conda-forge/ortools-samples) |
 
 Installing or-tools
 ===================
@@ -86,16 +108,16 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libortools, ortools-cpp, ortools-python` can be installed with `conda`:
+Once the `conda-forge` channel has been enabled, `libortools, ortools-cpp, ortools-python, ortools-samples` can be installed with `conda`:
 
 ```
-conda install libortools ortools-cpp ortools-python
+conda install libortools ortools-cpp ortools-python ortools-samples
 ```
 
 or with `mamba`:
 
 ```
-mamba install libortools ortools-cpp ortools-python
+mamba install libortools ortools-cpp ortools-python ortools-samples
 ```
 
 It is possible to list all of the versions of `libortools` available on your platform with `conda`:
