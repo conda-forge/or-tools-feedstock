@@ -1,4 +1,4 @@
-From 2b29a418d3a691933f2456544c11d64993080d9e Mon Sep 17 00:00:00 2001
+From a1a8a283aa2e1bd2e547042fe81080f423a5c93b Mon Sep 17 00:00:00 2001
 From: "H. Vetinari" <h.vetinari@gmx.com>
 Date: Tue, 30 May 2023 14:18:19 +1100
 Subject: [PATCH 3/3] avoid host.cmake
@@ -8,7 +8,7 @@ Subject: [PATCH 3/3] avoid host.cmake
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cmake/host.cmake b/cmake/host.cmake
-index 63e4dd300..d6aac2d02 100644
+index b8a8bdd53..0e504f041 100644
 --- a/cmake/host.cmake
 +++ b/cmake/host.cmake
 @@ -11,7 +11,7 @@

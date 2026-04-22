@@ -13,7 +13,7 @@ elif [[ "$PKG_NAME" == "ortools-cpp" ]]; then
     cmake --install ./build-cpp --prefix=./temp_prefix
     # install selected binaries & share
     cp -R ./temp_prefix/share/* $PREFIX/share
-    cp ./temp_prefix/bin/fzn-ortools $PREFIX/bin
+    cp ./temp_prefix/bin/fzn-cp-sat $PREFIX/bin
     cp ./temp_prefix/bin/sat_runner $PREFIX/bin
     cp ./temp_prefix/bin/solve $PREFIX/bin
 else
