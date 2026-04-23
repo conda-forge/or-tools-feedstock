@@ -1,4 +1,4 @@
-{% set version = "9.6" %}
+{% set version = "9.14" %}
 
 {% set libs = ["ortools", "ortools_flatzinc"] %}
 # many, many more headers; this just covers one from main namespace and a nested one
@@ -10,28 +10,33 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google/or-tools/archive/v{{ version }}.tar.gz
-  sha256: bc4b07dc9c23f0cca43b1f5c889f08a59c8f2515836b03d4cc7e0f8f2c879234
-  patches:
-    - patches/0001-fail-loudly-in-sample-program-if-scip-not-found.patch
-    - patches/0002-depend-on-libortools-for-python-bindings.patch
-    - patches/0003-avoid-host.cmake.patch
+  url: https://github.com/google/or-tools/releases/download/v{{ version }}/or-tools-{{ version }}.tar.gz
+  sha256: 6af83f7d373084c1221c875a3000f53ecdd1f253336648ef87e0aeef408facd7
 
 # The meta package
 
 build:
-  number: 3
-  skip: true  # [not linux]
+  number: 0
+  skip: true  # [not linux or aarch64 or ppc64le]
 
 requirements:
   build:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - {{ stdlib("c") }}
     - cmake
     - ninja
     - pkg-config
     - libprotobuf  # [build_platform != target_platform]
   host:
+    - gtest
+    - benchmark
+    - pybind11
+    # missing packages in conda:
+    # - pybind11-abseil
+    # - pybind11-protobuf
+    # - fuzztest  # work-around was to pass USE_fuzztest=OFF in build.sh
+    - numpy
     # eigen does not have a run-export but is header-only
     - eigen
     - libabseil
@@ -46,7 +51,6 @@ requirements:
     - coin-or-clp
     - coin-or-cgl
     - coin-or-cbc
-
 outputs:
   # The core package
   - name: libortools
@@ -60,6 +64,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         # these are only here for proper run-exports
         - libabseil
@@ -119,6 +124,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
         # for proper run-exports
@@ -160,6 +166,7 @@ outputs:
         # for strong run export
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
       host:
         - {{ pin_subpackage('ortools-cpp', exact=True) }}
         - libabseil
@@ -191,6 +198,7 @@ outputs:
       build:
         - {{ compiler('c') }}
         - {{ compiler('cxx') }}
+        - {{ stdlib("c") }}
         - cmake
         - ninja
         - pkg-config
@@ -203,11 +211,11 @@ outputs:
         - pip
         - setuptools
         - wheel
-        - absl-py >=0.13
+        - absl-py
         - numpy
         - mypy-protobuf
-        - protobuf >=4.21.12
-        - scipy >=1.10
+        - protobuf
+        - scipy
         # match protobuf version from libortools to help solver
         - libprotobuf
         # other C/C++ deps
@@ -225,13 +233,12 @@ outputs:
       run:
         - {{ pin_subpackage('libortools', exact=True) }}
         - python
-        - absl-py >=0.13
-        - mypy-protobuf
         - {{ pin_compatible('numpy') }}
-        - protobuf >=4.21.12
-        - scipy >=1.10
-        # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
-
+        - absl-py
+        - pandas
+        - protobuf
+        - typing_extensions
+        - immutabledict
     test:
       imports:
         - ortools
