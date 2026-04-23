@@ -20,12 +20,13 @@ source:
 # The meta package
 
 build:
-  number: 3
+  number: 4
   skip: true  # [not linux]
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
     - cmake
     - ninja
@@ -59,6 +60,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         # these are only here for proper run-exports
@@ -118,6 +120,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('libortools', exact=True) }}
@@ -159,6 +162,7 @@ outputs:
         - cmake
         # for strong run export
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
       host:
         - {{ pin_subpackage('ortools-cpp', exact=True) }}
@@ -190,6 +194,7 @@ outputs:
     requirements:
       build:
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - {{ compiler('cxx') }}
         - cmake
         - ninja
@@ -227,7 +232,6 @@ outputs:
         - python
         - absl-py >=0.13
         - mypy-protobuf
-        - {{ pin_compatible('numpy') }}
         - protobuf >=4.21.12
         - scipy >=1.10
         # Source: https://github.com/google/or-tools/blob/stable/ortools/python/setup.py.in#L44
