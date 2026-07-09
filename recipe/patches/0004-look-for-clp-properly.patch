@@ -1,0 +1,23 @@
+From 554b22ade0842df246aed00eb2bad6698e59a45a Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Thu, 1 Jun 2023 04:53:38 +1100
+Subject: [PATCH 4/4] look for clp properly
+
+Suggested-By: Mizux Seiha <mizux.dev@gmail.com>
+---
+ cmake/FindClp.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/FindClp.cmake b/cmake/FindClp.cmake
+index 799007cc7..d756173df 100644
+--- a/cmake/FindClp.cmake
++++ b/cmake/FindClp.cmake
+@@ -51,7 +51,7 @@ endif()
+ 
+ find_package(PkgConfig QUIET)
+ if(PKG_CONFIG_FOUND)
+-  pkg_check_modules(Clp QUIET cbc IMPORTED_TARGET GLOBAL)
++  pkg_check_modules(Clp QUIET clp IMPORTED_TARGET GLOBAL)
+   if(Clp_FOUND)
+     add_library(Coin::Clp ALIAS PkgConfig::Clp)
+     add_library(Coin::ClpSolver ALIAS PkgConfig::Clp)
